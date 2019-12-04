@@ -132,7 +132,6 @@ class ScaleYearViews(Resource):
 class PlotManagerViews(Resource):
     def post(self):
         classify = request.json.get("classify")
-        print(classify)
         latest = Classify.query.with_entities(Classify.update_date).order_by(Classify.update_date.desc()).first()[0]
         funds = Classify.query.with_entities(Classify.windcode).filter(
             Classify.classify.in_(classify), Classify.update_date == latest
